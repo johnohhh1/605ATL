@@ -19,3 +19,15 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Add these new styles */
+input, textarea {
+  color: black !important;
+  -webkit-text-fill-color: black !important;
+  background-color: white !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #666 !important;
+  -webkit-text-fill-color: #666 !important;
+}
