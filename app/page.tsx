@@ -9,25 +9,8 @@ const backgrounds = [
   '/atl-background.jpg'
 ];
 
-type FormData = {
-  recipientName: string;
-  message: string;
-  signature: string;
-  date: string;
-  checkboxes: {
-    guestCounts: boolean;
-    playRestaurant: boolean;
-    foodDrink: boolean;
-    accountable: boolean;
-    engageTeam: boolean;
-    bringBack: boolean;
-    growSales: boolean;
-    increaseProfits: boolean;
-  };
-};
-
 export default function RecognitionForm() {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     recipientName: '',
     message: '',
     signature: '',
@@ -77,7 +60,7 @@ export default function RecognitionForm() {
       }
 
       alert('Recognition form submitted successfully!');
-      
+
     } catch (error) {
       console.error('Submission error:', error);
       alert('Error submitting form: ' + (error as Error).message);
@@ -90,7 +73,7 @@ export default function RecognitionForm() {
         id="capture-area" 
         className="max-w-[850px] mx-auto bg-white p-8 rounded-lg shadow-lg"
         style={{
-          backgroundImage: `url('${backgrounds[Math.floor(Math.random() * backgrounds.length)]}')',
+          backgroundImage: `url('${backgrounds[Math.floor(Math.random() * backgrounds.length)]}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
