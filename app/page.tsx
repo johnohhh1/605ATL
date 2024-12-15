@@ -3,6 +3,12 @@
 import { useState } from 'react';
 import html2canvas from 'html2canvas';
 
+const backgrounds = [
+  '/atl-background-red.jpg',
+  '/atl-background-green.jpg',
+  '/atl-background.jpg'
+];
+
 export default function RecognitionForm() {
   const [formData, setFormData] = useState({
     recipientName: '',
@@ -67,7 +73,7 @@ export default function RecognitionForm() {
         id="capture-area" 
         className="max-w-[850px] mx-auto bg-white p-8 rounded-lg shadow-lg"
         style={{
-          backgroundImage: "url('/atl-background.jpg')",
+          backgroundImage: `url('${backgrounds[Math.floor(Math.random() * backgrounds.length)]}')`
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
