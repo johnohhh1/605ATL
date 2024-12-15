@@ -73,7 +73,7 @@ export default function RecognitionForm() {
         id="capture-area" 
         className="max-w-[850px] mx-auto bg-white p-8 rounded-lg shadow-lg"
         style={{
-          backgroundImage: `url('${backgrounds[Math.floor(Math.random() * backgrounds.length)]}')`
+          backgroundImage: `url('${backgrounds[Math.floor(Math.random() * backgrounds.length)]}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
