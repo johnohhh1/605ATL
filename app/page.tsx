@@ -40,6 +40,7 @@ export default function RecognitionForm() {
       });
 
       const imageData = canvas.toDataURL('image/jpeg', 0.95);
+      const filename = `ATL_Recognition_${new Date().toLocaleDateString('en-US').replace(/\//g, '-')}_${new Date().getTime()}.jpg`;
 
       const response = await fetch('/api/upload', {
         method: 'POST',
@@ -50,7 +51,8 @@ export default function RecognitionForm() {
           image: imageData,
           metadata: {
             location: 'Auburn Hills',
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            filename: filename
           }
         })
       });
@@ -78,7 +80,6 @@ export default function RecognitionForm() {
           backgroundPosition: 'center'
         }}
       >
-        {/* Header Section */}
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-bold text-[#E31837]">
             Auburn Hills ATL
@@ -98,7 +99,6 @@ export default function RecognitionForm() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Top Checkboxes */}
           <div className="mb-8">
             <div className="flex flex-row justify-between gap-4">
               {[
@@ -123,7 +123,6 @@ export default function RecognitionForm() {
             </div>
           </div>
 
-          {/* Message Section */}
           <div>
             <label className="block font-bold text-gray-700 mb-2">
               Recognition Message:
@@ -136,60 +135,6 @@ export default function RecognitionForm() {
             />
           </div>
 
-          {/* Bottom Checkboxes */}
-          <div className="mb-8">
-            <div className="flex flex-row justify-between gap-4">
-              {[
-                ['engageTeam', 'ENGAGE TEAM MEMBERS'],
-                ['bringBack', 'BRING BACK GUESTS'],
-                ['growSales', 'GROW SALES'],
-                ['increaseProfits', 'INCREASE PROFITS']
-              ].map(([key, label]) => (
-                <div key={key} className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    checked={formData.checkboxes[key as keyof typeof formData.checkboxes]}
-                    onChange={(e) => setFormData({
-                      ...formData,
-                      checkboxes: {...formData.checkboxes, [key]: e.target.checked}
-                    })}
-                    className="w-5 h-5"
-                  />
-                  <label className="font-bold text-sm whitespace-nowrap">{label}</label>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Footer Section */}
-          <div className="grid grid-cols-2 gap-8">
-            <div>
-              <label className="block font-bold text-gray-700 mb-2">
-                WITH #CHILISLOVE,
-              </label>
-              <input
-                type="text"
-                value={formData.signature}
-                onChange={(e) => setFormData({...formData, signature: e.target.value})}
-                className="w-full p-2 border-2 border-[#E31837] rounded"
-                required
-              />
-            </div>
-            <div>
-              <label className="block font-bold text-gray-700 mb-2">
-                DATE
-              </label>
-              <input
-                type="date"
-                value={formData.date}
-                onChange={(e) => setFormData({...formData, date: e.target.value})}
-                className="w-full p-2 border-2 border-[#E31837] rounded"
-                required
-              />
-            </div>
-          </div>
-
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-[#E31837] text-white py-3 px-6 rounded-lg font-bold hover:bg-[#c41430] transition-colors"
