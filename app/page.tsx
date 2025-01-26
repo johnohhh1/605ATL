@@ -130,9 +130,60 @@ export default function RecognitionForm() {
             <textarea
               value={formData.message}
               onChange={(e) => setFormData({...formData, message: e.target.value})}
-              className="w-full h-32 p-2 border-2 border-[#E31837] rounded"
+              className="w-full h-32 p-2 border-2 border-[#E31837] rounded break-words"
               required
             />
+          </div>
+
+          <div className="mb-8">
+            <div className="flex flex-row justify-between gap-4">
+              {[
+                ['engageTeam', 'ENGAGE TEAM MEMBERS'],
+                ['bringBack', 'BRING BACK GUESTS'],
+                ['growSales', 'GROW SALES'],
+                ['increaseProfits', 'INCREASE PROFITS']
+              ].map(([key, label]) => (
+                <div key={key} className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={formData.checkboxes[key as keyof typeof formData.checkboxes]}
+                    onChange={(e) => setFormData({
+                      ...formData,
+                      checkboxes: {...formData.checkboxes, [key]: e.target.checked}
+                    })}
+                    className="w-5 h-5"
+                  />
+                  <label className="font-bold text-sm whitespace-nowrap">{label}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-8">
+            <div>
+              <label className="block font-bold text-gray-700 mb-2">
+                WITH #CHILISLOVE,
+              </label>
+              <input
+                type="text"
+                value={formData.signature}
+                onChange={(e) => setFormData({...formData, signature: e.target.value})}
+                className="w-full p-2 border-2 border-[#E31837] rounded"
+                required
+              />
+            </div>
+            <div>
+              <label className="block font-bold text-gray-700 mb-2">
+                DATE
+              </label>
+              <input
+                type="date"
+                value={formData.date}
+                onChange={(e) => setFormData({...formData, date: e.target.value})}
+                className="w-full p-2 border-2 border-[#E31837] rounded"
+                required
+              />
+            </div>
           </div>
 
           <button
